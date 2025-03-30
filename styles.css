@@ -631,7 +631,7 @@ canvas {
   justify-content: center;
   align-items: center;
   touch-action: manipulation;
-  overflow: hidden; /* Ensure the container doesn't overflow */
+  overflow: hidden;
 }
 
 .gift-message {
@@ -641,14 +641,14 @@ canvas {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   width: 90%;
-  max-width: 400px; /* Adjust max-width to fit better on smaller screens */
+  max-width: 400px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  position: relative; /* Remove absolute positioning for better responsiveness */
-  margin: 0 auto; /* Center the message within the container */
+  position: relative;
+  margin: 0 auto;
 }
 
 .gift-message-inner {
@@ -663,22 +663,23 @@ canvas {
   border-radius: 10px;
   object-fit: contain;
   width: 100%;
-  max-width: 150px; /* Adjust max-width to fit better on smaller screens */
+  max-width: 120px;
   height: auto;
 }
 
 .gift-message-content h3 {
   margin: 0 0 10px 0;
   color: #333;
-  font-size: 5vw; /* Responsive font size */
+  font-size: 1.2rem;
   font-family: "Silkscreen", sans-serif;
 }
 
 .gift-message-content p {
   margin: 0;
   color: #666;
-  font-size: 5vw; /* Responsive font size */
+  font-size: 1rem;
   font-family: "Courier New", monospace;
+  line-height: 1.4;
 }
 
 .gift-message .close-message-btn {
@@ -699,20 +700,49 @@ canvas {
   z-index: 10;
 }
 
-/* Mobile-specific styles */
+/* Money particle animation adjustments */
+#money-canvas {
+  animation: money-fall 3s ease-out forwards;
+}
+
+@keyframes money-fall {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Slower animation for smaller screens */
 @media (max-width: 768px) {
   .gift-message {
     padding: 15px;
-    max-width: 300px; /* Adjust max-width for smaller screens */
+    max-width: 300px;
   }
+
   .gift-message-content h3 {
-    font-size: 3vw;
+    font-size: 1rem;
   }
+
   .gift-message-content p {
-    font-size: 3vw;
+    font-size: 0.9rem;
   }
+
   .gift-message-image {
-    max-width: 500px;
+    max-width: 100px;
+  }
+
+  /* Slower money animation */
+  #money-canvas {
+    animation: money-fall 5s ease-out forwards;
+  }
+
+  /* Adjust gift opening animation */
+  .gift.open .gift-top {
+    transition: transform 1s ease;
   }
 }
 
@@ -720,6 +750,11 @@ canvas {
 @media (orientation: landscape) and (max-height: 500px) {
   .gift-message {
     max-width: 300px;
+  }
+
+  /* Even slower animation in landscape */
+  #money-canvas {
+    animation: money-fall 6s ease-out forwards;
   }
 }
 
@@ -729,13 +764,77 @@ canvas {
     padding: 20px;
     max-width: 350px;
   }
+
   .gift-message-content h3 {
-    font-size: 5vw;
+    font-size: 1.1rem;
   }
+
   .gift-message-content p {
-    font-size: 5vw;
+    font-size: 0.95rem;
   }
+
   .gift-message-image {
-    max-width: 220px;
+    max-width: 110px;
+  }
+
+  /* Medium speed animation for tablets */
+  #money-canvas {
+    animation: money-fall 4s ease-out forwards;
+  }
+}
+
+/* Score displays */
+#total-amount {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
+  color: black;
+  z-index: 1000;
+  font-family: "Silkscreen", sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+#highest-score {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 16px;
+  color: gray;
+  z-index: 1000;
+  font-family: "Silkscreen", sans-serif;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  #total-amount {
+    font-size: 18px;
+    top: 15px;
+    right: 15px;
+    padding: 4px 8px;
+  }
+
+  #highest-score {
+    font-size: 14px;
+    bottom: 15px;
+    right: 15px;
+    padding: 4px 8px;
+  }
+
+  /* Slowest animation for very small screens */
+  #money-canvas {
+    animation: money-fall 7s ease-out forwards;
   }
 }
