@@ -1,4 +1,4 @@
-#  🌟 Eid Mubarak Celebration Game! 🌟
+#   ✨🌙 Eid Celebration Game! 🌙✨
 
 An interactive celebration game where you collect flying money from an Eid gift box!
 
