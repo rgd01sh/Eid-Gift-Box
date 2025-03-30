@@ -316,6 +316,7 @@ body {
   transform-style: preserve-3d;
   cursor: pointer;
   animation: bounce 2s infinite;
+  z-index: 10; /* Ensure the gift box is above the particles */
 }
 
 .gift-top {
