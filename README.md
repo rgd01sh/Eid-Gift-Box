@@ -5,6 +5,7 @@ An interactive celebration game where you collect flying money from an Eid gift 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 ## Play Now
 [![Gameplay Preview](https://github.com/user-attachments/assets/9ff19648-328b-4f24-b79d-e1afe2d15882)](https://rgd01sh.github.io/Eid-Money-Game/)
+https://rgd01sh.github.io/Eid-Money-Game/
 
 ##  Features
 - Beautiful animated gift box with faces
