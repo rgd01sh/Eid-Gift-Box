@@ -199,10 +199,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }, 400);
   }
+
+  // Create money particles with mobile-specific slower speeds
   function createBoxMoney() {
     const giftRect = gift.getBoundingClientRect();
     const originX = giftRect.left + giftRect.width / 2;
-    const originY = giftRect.top + giftRect.height / 2 - 20; // Adjust originY to be slightly higher
+    const originY = giftRect.top + giftRect.height / 2;
 
     for (let i = 0; i < 12; i++) {
       const denom =
@@ -216,8 +218,8 @@ document.addEventListener("DOMContentLoaded", function () {
         color: denom.color,
         giftTitle: denom.gift,
         giftMessage: denom.message,
-        speedX: (Math.random() - 0.5) * 3 * speedMultiplier, // Horizontal speed
-        speedY: (-2 - Math.random() * 3) * speedMultiplier, // Vertical speed
+        speedX: (Math.random() - 0.5) * 3 * speedMultiplier,
+        speedY: (-2 - Math.random() * 3) * speedMultiplier,
         gravity: 0.05 * gravityMultiplier,
         rotation: Math.random() * Math.PI * 2,
         rollAmount: 0.4 + Math.random() * 0.3,
@@ -239,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function createSpreadMoney() {
     const giftRect = gift.getBoundingClientRect();
     const originX = giftRect.left + giftRect.width / 2;
-    const originY = giftRect.top + giftRect.height / 2 - 20; // Adjust originY to be slightly higher
+    const originY = giftRect.top + giftRect.height / 2;
 
     for (let i = 0; i < 18; i++) {
       const denom =
@@ -253,8 +255,8 @@ document.addEventListener("DOMContentLoaded", function () {
         color: denom.color,
         giftTitle: denom.gift,
         giftMessage: denom.message,
-        speedX: (Math.random() - 0.5) * 15 * speedMultiplier, // Horizontal speed
-        speedY: (-8 - Math.random() * 10) * speedMultiplier, // Vertical speed
+        speedX: (Math.random() - 0.5) * 15 * speedMultiplier,
+        speedY: (-8 - Math.random() * 10) * speedMultiplier,
         gravity: 0.2 * gravityMultiplier,
         rotation: Math.random() * Math.PI * 2,
         rollAmount: 0.3 + Math.random() * 0.4,
@@ -267,6 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   }
+
   // Handle money click
   function handleMoneyClick(e) {
     const rect = moneyCanvas.getBoundingClientRect();
