@@ -663,8 +663,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Style the highest score display
   highestScoreElement.style.position = "absolute";
-  highestScoreElement.style.bottom = "30px";
-  highestScoreElement.style.right = "25px";
+  highestScoreElement.style.bottom = "80px";
+  highestScoreElement.style.right = "75px";
   highestScoreElement.style.fontSize = "15px";
   highestScoreElement.style.color = "gray";
   highestScoreElement.style.zIndex = "1000";
