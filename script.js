@@ -200,7 +200,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 400);
   }
 
-  // Create money particles with mobile-specific slower speeds
   function createBoxMoney() {
     const giftRect = gift.getBoundingClientRect();
     const originX = giftRect.left + giftRect.width / 2;
@@ -218,8 +217,8 @@ document.addEventListener("DOMContentLoaded", function () {
         color: denom.color,
         giftTitle: denom.gift,
         giftMessage: denom.message,
-        speedX: (Math.random() - 0.5) * 3 * speedMultiplier,
-        speedY: (-2 - Math.random() * 3) * speedMultiplier,
+        speedX: (Math.random() - 0.5) * 5 * speedMultiplier, // Reduced horizontal speed
+        speedY: (-5 - Math.random() * 5) * speedMultiplier, // Increased vertical speed
         gravity: 0.05 * gravityMultiplier,
         rotation: Math.random() * Math.PI * 2,
         rollAmount: 0.4 + Math.random() * 0.3,
@@ -255,8 +254,8 @@ document.addEventListener("DOMContentLoaded", function () {
         color: denom.color,
         giftTitle: denom.gift,
         giftMessage: denom.message,
-        speedX: (Math.random() - 0.5) * 15 * speedMultiplier,
-        speedY: (-8 - Math.random() * 10) * speedMultiplier,
+        speedX: (Math.random() - 0.5) * 10 * speedMultiplier, // Reduced horizontal speed
+        speedY: (-10 - Math.random() * 10) * speedMultiplier, // Increased vertical speed
         gravity: 0.2 * gravityMultiplier,
         rotation: Math.random() * Math.PI * 2,
         rollAmount: 0.3 + Math.random() * 0.4,
@@ -269,7 +268,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   }
-
   // Handle money click
   function handleMoneyClick(e) {
     const rect = moneyCanvas.getBoundingClientRect();
