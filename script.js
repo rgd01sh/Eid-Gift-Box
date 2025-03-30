@@ -49,6 +49,13 @@ document.addEventListener("DOMContentLoaded", function () {
   let totalAmount = 0;
   let highestScore = 0;
 
+  // Check if device is mobile
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  // Animation speed multipliers (smaller = slower)
+  const speedMultiplier = isMobile ? 0.5 : 1; // Half speed on mobile
+  const gravityMultiplier = isMobile ? 0.7 : 1; // Less gravity on mobile
+
   // Riyal denominations with properties
   const denominations = [
     {
@@ -193,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 400);
   }
 
-  // Create money particles
+  // Create money particles with mobile-specific slower speeds
   function createBoxMoney() {
     const giftRect = gift.getBoundingClientRect();
     const originX = giftRect.left + giftRect.width / 2;
@@ -205,15 +212,15 @@ document.addEventListener("DOMContentLoaded", function () {
       moneyParticles.push({
         x: originX,
         y: originY,
-        size: 90 + Math.random() * 40,
+        size: 70 + Math.random() * 30,
         value: denom.value,
         image: denom.image,
         color: denom.color,
         giftTitle: denom.gift,
         giftMessage: denom.message,
-        speedX: (Math.random() - 0.5) * 3,
-        speedY: -2 - Math.random() * 3,
-        gravity: 0.05,
+        speedX: (Math.random() - 0.5) * 3 * speedMultiplier,
+        speedY: (-2 - Math.random() * 3) * speedMultiplier,
+        gravity: 0.05 * gravityMultiplier,
         rotation: Math.random() * Math.PI * 2,
         rollAmount: 0.4 + Math.random() * 0.3,
         life: 1000 + Math.random() * 500,
@@ -242,15 +249,15 @@ document.addEventListener("DOMContentLoaded", function () {
       spreadParticles.push({
         x: originX,
         y: originY,
-        size: 60 + Math.random() * 40,
+        size: 50 + Math.random() * 30,
         value: denom.value,
         image: denom.image,
         color: denom.color,
         giftTitle: denom.gift,
         giftMessage: denom.message,
-        speedX: (Math.random() - 0.5) * 15,
-        speedY: -8 - Math.random() * 10,
-        gravity: 0.2,
+        speedX: (Math.random() - 0.5) * 15 * speedMultiplier,
+        speedY: (-8 - Math.random() * 10) * speedMultiplier,
+        gravity: 0.2 * gravityMultiplier,
         rotation: Math.random() * Math.PI * 2,
         rollAmount: 0.3 + Math.random() * 0.4,
         life: 600 + Math.random() * 400,
@@ -293,11 +300,11 @@ document.addEventListener("DOMContentLoaded", function () {
         collectAudio.play();
 
         if (p.type === "box") {
-          p.speedX = (Math.random() - 0.5) * 8;
-          p.speedY = -4 - Math.random() * 5;
+          p.speedX = (Math.random() - 0.5) * 8 * speedMultiplier;
+          p.speedY = (-4 - Math.random() * 5) * speedMultiplier;
         } else {
-          p.speedX = (Math.random() - 0.5) * 20;
-          p.speedY = -12 - Math.random() * 8;
+          p.speedX = (Math.random() - 0.5) * 20 * speedMultiplier;
+          p.speedY = (-12 - Math.random() * 8) * speedMultiplier;
         }
         return;
       }
@@ -384,7 +391,10 @@ document.addEventListener("DOMContentLoaded", function () {
         drawLooseCurl(ctx, img, width, height, p.rollAmount, p.color, p.value);
       }
     } else if (p.state === "unrolling") {
-      p.unrollProgress = Math.min(1, p.unrollProgress + 0.04);
+      p.unrollProgress = Math.min(
+        1,
+        p.unrollProgress + 0.04 * (isMobile ? 0.7 : 1)
+      );
       const unrolledWidth = width * p.unrollProgress;
 
       if (img) {
@@ -638,16 +648,19 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.appendChild(totalAmountElement);
 
   // Style the total amount display
-  totalAmountElement.style.position = "absolute";
-  totalAmountElement.style.top = "30px";
-  totalAmountElement.style.right = "25px";
-  totalAmountElement.style.fontSize = "24px";
+  totalAmountElement.style.position = "fixed";
+  totalAmountElement.style.top = "20px";
+  totalAmountElement.style.right = "20px";
+  totalAmountElement.style.fontSize = "20px";
   totalAmountElement.style.color = "black";
   totalAmountElement.style.zIndex = "1000";
   totalAmountElement.style.fontFamily = "Silkscreen, sans-serif";
   totalAmountElement.style.display = "flex";
   totalAmountElement.style.alignItems = "center";
-  totalAmountElement.style.gap = "19px";
+  totalAmountElement.style.gap = "10px";
+  totalAmountElement.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
+  totalAmountElement.style.padding = "5px 10px";
+  totalAmountElement.style.borderRadius = "5px";
 
   // Create and position highest score display
   const highestScoreElement = document.createElement("div");
@@ -656,23 +669,26 @@ document.addEventListener("DOMContentLoaded", function () {
   highestScoreElement.innerHTML = `
     <div style="display: flex; justify-content: flex-end; align-items: center;">
       Best: 
-      <span style="margin-left: 10px;">0</span>
+      <span style="margin-left: 5px;">0</span>
     </div>
   `;
   document.body.appendChild(highestScoreElement);
 
   // Style the highest score display
-  highestScoreElement.style.position = "absolute";
-  highestScoreElement.style.bottom = "80px";
-  highestScoreElement.style.right = "75px";
-  highestScoreElement.style.fontSize = "15px";
+  highestScoreElement.style.position = "fixed";
+  highestScoreElement.style.bottom = "20px";
+  highestScoreElement.style.right = "20px";
+  highestScoreElement.style.fontSize = "16px";
   highestScoreElement.style.color = "gray";
   highestScoreElement.style.zIndex = "1000";
   highestScoreElement.style.fontFamily = "Silkscreen, sans-serif";
   highestScoreElement.style.display = "flex";
   highestScoreElement.style.justifyContent = "flex-end";
   highestScoreElement.style.alignItems = "center";
-  highestScoreElement.style.gap = "19px";
+  highestScoreElement.style.gap = "10px";
+  highestScoreElement.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
+  highestScoreElement.style.padding = "5px 10px";
+  highestScoreElement.style.borderRadius = "5px";
 
   // Initialize the highest score
   updateHighestScore();
