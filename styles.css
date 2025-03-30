@@ -22,6 +22,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -33,6 +34,11 @@ body {
   align-items: center;
   height: 100vh;
   font-family: "Courier New", monospace;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  position: fixed;
+  width: 100%;
+  touch-action: manipulation;
 }
 
 .stars {
@@ -270,7 +276,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   color: #c88dc1;
-  font-size: 30px;
+  font-size: 7vw;
   font-family: "Silkscreen", sans-serif;
   text-shadow: 0 0 10px #eeece9b9;
   opacity: 0;
@@ -278,6 +284,8 @@ body {
   animation: float-up 3s ease-in-out infinite;
   pointer-events: none;
   transition: opacity 0.5s ease;
+  max-width: 90%;
+  text-align: center;
 }
 
 @keyframes float-up {
@@ -301,8 +309,10 @@ body {
 
 .gift {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 40vw;
+  height: 40vw;
+  max-width: 200px;
+  max-height: 200px;
   transform-style: preserve-3d;
   cursor: pointer;
   animation: bounce 2s infinite;
@@ -334,7 +344,7 @@ body {
 .gift-ribbon-horizontal {
   position: absolute;
   width: 100%;
-  height: 20px;
+  height: 15%;
   background: var(--gift-accent);
   top: 50%;
   transform: translateY(-50%);
@@ -346,7 +356,7 @@ body {
 /* Update the existing vertical ribbon to work with the horizontal one */
 .gift-ribbon-vertical {
   position: absolute;
-  width: 20px;
+  width: 15%;
   height: 100%;
   background: var(--gift-accent);
   left: 50%;
@@ -387,8 +397,10 @@ body {
 
 .gift-bow {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 20%;
+  height: 20%;
+  min-width: 30px;
+  min-height: 30px;
   background: var(--gift-accent);
   top: 13%;
   left: 50%;
@@ -402,8 +414,8 @@ body {
 .gift-bow::before,
 .gift-bow::after {
   content: "";
-  width: 15px;
-  height: 15px;
+  width: 30%;
+  height: 30%;
   border: 10px solid #f6ede4;
   border-radius: 50% 50% 0 50%;
   position: absolute;
@@ -430,8 +442,8 @@ body {
 
 .face-standard .eye-left,
 .face-standard .eye-right {
-  width: 20px;
-  height: 20px;
+  width: 10%;
+  height: 12%;
   background-color: #000;
   border-radius: 50%;
   position: absolute;
@@ -448,8 +460,8 @@ body {
 }
 
 .face-standard .mouth {
-  width: 30px;
-  height: 5px;
+  width: 16%;
+  height: 5%;
   background-color: #000;
   position: absolute;
   top: 45%;
@@ -460,8 +472,8 @@ body {
 
 .face-happy .eye-left,
 .face-happy .eye-right {
-  width: 20px;
-  height: 20px;
+  width: 10%;
+  height: 13%;
   background-color: #000;
   border-radius: 50%;
   position: absolute;
@@ -478,10 +490,10 @@ body {
 }
 
 .face-happy .mouth {
-  width: 35px;
-  height: 30px;
+  width: 15%;
+  height: 20%;
   border-bottom: 8px solid #000;
-  border-radius: 5 5 10px 10px;
+  border-radius: 0 0 20px 20px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -492,16 +504,16 @@ body {
 @keyframes laugh {
   0%,
   100% {
-    border-bottom: 5px solid #000;
-    border-radius: 0 0 15px 15px;
+    border-bottom: 3px solid #000;
+    border-radius: 0 0 10px 10px;
   }
   33% {
-    border-bottom: 13px solid #000;
-    border-radius: 0 0 18px 18px;
+    border-bottom: 8px solid #000;
+    border-radius: 0 0 12px 12px;
   }
   66% {
-    border-bottom: 20px solid #000;
-    border-radius: 0 0 25px 25px;
+    border-bottom: 12px solid #000;
+    border-radius: 0 0 15px 15px;
   }
 }
 
@@ -568,11 +580,13 @@ body {
   top: 70%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 24px;
+  font-size: 4vw;
   color: white;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   opacity: 0.8;
   animation: pulse 2s infinite;
+  max-width: 90%;
+  text-align: center;
 }
 
 @keyframes pulse {
@@ -593,6 +607,7 @@ canvas {
   top: 0;
   left: 0;
   z-index: 5;
+  touch-action: none;
 }
 
 /* Money canvas styles */
@@ -601,7 +616,7 @@ canvas {
   top: 0;
   left: 0;
   z-index: 6;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .gift-message-container {
@@ -615,6 +630,8 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
+  touch-action: manipulation;
+  overflow: hidden; /* Ensure the container doesn't overflow */
 }
 
 .gift-message {
@@ -624,23 +641,21 @@ canvas {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   width: 90%;
-  max-width: 400px;
+  max-width: 400px; /* Adjust max-width to fit better on smaller screens */
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  /* Ensure vertical and horizontal centering */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative; /* Remove absolute positioning for better responsiveness */
+  margin: 0 auto; /* Center the message within the container */
 }
 
 .gift-message-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .gift-message-image {
@@ -648,98 +663,31 @@ canvas {
   border-radius: 10px;
   object-fit: contain;
   width: 100%;
-  max-width: 150px;
+  max-width: 150px; /* Adjust max-width to fit better on smaller screens */
+  height: auto;
 }
 
 .gift-message-content h3 {
   margin: 0 0 10px 0;
   color: #333;
-  font-size: 1.5em;
-  font-family: "Silkscreen", sans-serif; /* Title font */
+  font-size: 5vw; /* Responsive font size */
+  font-family: "Silkscreen", sans-serif;
 }
 
 .gift-message-content p {
   margin: 0;
   color: #666;
-  font-size: 1.1em;
-  font-family: "Courier New", monospace; /* Body font */
+  font-size: 4vw; /* Responsive font size */
+  font-family: "Courier New", monospace;
 }
 
-@media (max-width: 480px) {
-  .gift-message {
-    width: 90% !important;
-    padding: 15px;
-  }
-  .gift-message-content h3 {
-    font-size: 1.3em;
-  }
-  .gift-message-content p {
-    font-size: 1em;
-  }
-  .gift-message-image {
-    width: 100%;
-    max-width: 100px;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-  .gift-message {
-    width: 80%;
-    padding: 20px;
-  }
-  .gift-message-content h3 {
-    font-size: 1.4em;
-  }
-  .gift-message-content p {
-    font-size: 1.1em;
-  }
-  .gift-message-image {
-    width: 100%;
-    max-width: 120px;
-  }
-}
-
-@media (min-width: 769px) {
-  .gift-message {
-    width: 70%;
-    padding: 25px;
-  }
-  .gift-message-content h3 {
-    font-size: 1.6em;
-  }
-  .gift-message-content p {
-    font-size: 1.2em;
-  }
-  .gift-message-image {
-    width: 100%;
-    max-width: 150px;
-  }
-}
-.total-amount {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 24px;
-  color: white;
-  z-index: 1000;
-  font-family: "Rubik Mono One", sans-serif; /* Apply the Rubik Mono One font */
-  display: flex;
-  align-items: center;
-  gap: 5px; /* Space between the icon and the text */
-}
-
-.total-amount img {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
-}
 .gift-message .close-message-btn {
   position: absolute;
   top: 5px;
   right: 5px;
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 10px;
   cursor: pointer;
   color: #918f8f;
   width: 30px;
@@ -749,4 +697,45 @@ canvas {
   justify-content: center;
   border-radius: 50%;
   z-index: 10;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .gift-message {
+    padding: 15px;
+    max-width: 300px; /* Adjust max-width for smaller screens */
+  }
+  .gift-message-content h3 {
+    font-size: 3vw;
+  }
+  .gift-message-content p {
+    font-size: 2vw;
+  }
+  .gift-message-image {
+    max-width: 500px;
+  }
+}
+
+/* Landscape orientation fixes */
+@media (orientation: landscape) and (max-height: 500px) {
+  .gift-message {
+    max-width: 300px;
+  }
+}
+
+/* Tablet-specific styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .gift-message {
+    padding: 20px;
+    max-width: 350px;
+  }
+  .gift-message-content h3 {
+    font-size: 5vw;
+  }
+  .gift-message-content p {
+    font-size: 4vw;
+  }
+  .gift-message-image {
+    max-width: 220px;
+  }
 }
