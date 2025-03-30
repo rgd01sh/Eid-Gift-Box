@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eid Mubarak Celebration</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="sky">
+      <div class="moon moon-new-1"></div>
+      <div class="stars"></div>
+      <div class="cloud"></div>
+      <div class="lower-clouds"></div>
+      <div class="star"></div>
+    </div>
+
+    <div id="eid-message">Eid Mubarak!</div>
+    <div class="gift-container">
+      <div class="gift">
+        <div class="gift-top"></div>
+        <div class="gift-bottom">
+          <!-- Ribbon wrapping -->
+          <div class="gift-ribbon-horizontal"></div>
+          <div class="gift-ribbon-vertical"></div>
+
+          <!-- Face Elements -->
+          <div class="face face-standard">
+            <div class="eye-left"></div>
+            <div class="eye-right"></div>
+            <div class="mouth"></div>
+          </div>
+          <div class="face face-happy">
+            <div class="eye-left"></div>
+            <div class="eye-right"></div>
+            <div class="mouth"></div>
+          </div>
+
+          <!-- Money inside the gift -->
+          <div class="money money1"></div>
+          <div class="money money2"></div>
+          <div class="money money3"></div>
+        </div>
+        <div class="gift-bow"></div>
+      </div>
+    </div>
+
+    <canvas id="confetti"></canvas>
+
+    <!-- Audio Elements -->
+    <audio id="bgAudio" src="audio/background.mp3" loop></audio>
+    <audio id="boxClickAudio" src="audio/click-box.mp3"></audio>
+    <audio id="collectAudio" src="audio/collect.mp3"></audio>
+    <audio id="messageAudio" src="audio/message.mp3"></audio>
+    <audio id="countAudio" src="audio/count.mp3"></audio>
+    <audio id="resetAudio" src="audio/total-zero.mp3"></audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

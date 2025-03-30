@@ -1,0 +1,752 @@
+:root {
+  --sky: #a3d8f4;
+  --moon: #f6beef;
+  --crater: #d1d8e0;
+  --cloud: #f1f1f15d;
+  --lower-cloud: #f1f1f12d;
+  --star: #ffffff;
+  --star-glow: rgba(255, 255, 255, 0.8);
+  --gift-primary: #eeb4cf;
+  --gift-secondary: #fef2dd;
+  --gift-accent: #e7a8c5;
+  --riyal-5: #552d6e;
+  --riyal-10: #a96050;
+  --riyal-50: #3a7d44;
+  --riyal-100: #be1e66;
+  --riyal-200: rgb(184, 191, 181);
+  --riyal-500: #2f009e;
+  --money-border: rgba(0, 0, 0, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: var(--sky);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Courier New", monospace;
+}
+
+.stars {
+  position: absolute;
+  border-radius: 45%;
+  width: 0.2rem;
+  height: 0.2rem;
+  background: white;
+  box-shadow: -20vh 20vh 0 -1px rgb(248, 218, 218),
+    10vh 10vh 0 1px rgba(210, 210, 210, 0.167), 11vh 11vh 0 -1px #fed6d6,
+    -35vh 15vh 0 -0.5px rgb(255, 230, 230),
+    25vh 5vh 0 0.5px rgba(219, 219, 219, 0.033), -15vh 30vh 0 -1px #ffd1d1,
+    40vh 25vh 0 -0.5px rgb(255, 225, 225), -50vh 10vh 0 -1px #ffdbdb,
+    15vh 40vh 0 0.5px #fff3, -25vh 45vh 0 -1px #ffc9c9,
+    30vh 35vh 0 -0.5px rgb(255, 235, 235), 11vh 11vh 0 -1px #fed6d6,
+    -35vh 15vh 0 -0.5px rgb(255, 230, 230), -40vh 50vh 0 -1px #ffd5d5,
+    5vh 60vh 0 0.5px #fff1, -15vh 65vh 0 -1px #ffcfcf,
+    45vh 55vh 0 -0.5px rgb(255, 240, 240), 11vh 11vh 0 -1px #fed6d6,
+    -35vh 15vh 0 -0.5px rgb(255, 230, 230), 0 0 0 0.5px #fff4,
+    10vh 10vh 0 0.5px rgba(246, 246, 246, 0.167), -10vh -10vh 0 0.5px #fff4,
+    20vh 20vh 0 0.5px #fff4;
+  z-index: -4;
+  filter: drop-shadow(0 0 3px rgb(255, 215, 215))
+    drop-shadow(0 0 2px rgb(255, 225, 225)) drop-shadow(20vh 10vh 0 white)
+    drop-shadow(-23vh -5vh 0 white) drop-shadow(-23vh 5vh 0 white)
+    drop-shadow(30vh 20vh 0 rgba(255, 200, 200, 0.3))
+    drop-shadow(-40vh 30vh 0 rgba(255, 210, 210, 0.3));
+  animation: twinkle 1s infinite alternate, moveStars 1s infinite alternate,
+    scaleStars 1s infinite alternate, fadeStars 0.3s infinite alternate;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 2px rgb(255, 215, 215))
+      drop-shadow(0 0 1px rgb(255, 225, 225));
+  }
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgb(255, 200, 200))
+      drop-shadow(0 0 3px rgb(255, 230, 230));
+  }
+}
+
+@keyframes moveStars {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(1vw, 1vh);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes scaleStars {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeStars {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.cloud {
+  position: absolute;
+  width: 10vh;
+  height: 4vh;
+  background: currentcolor;
+  color: var(--cloud);
+  top: 18vh;
+  left: 20vh;
+  border-radius: 0.5vh;
+  box-shadow: -4vh -1.5vh 0 currentcolor, 0 -1.5vh 0 currentcolor,
+    -10vh 1.5vh 0 currentcolor, 0vh 1.5vh 0 currentcolor,
+    -8vh 4.5vh 0 currentcolor, -4vh 4.5vh 0 currentcolor,
+    -4vh 4.5vh 0 currentcolor, 1vh 7.5vh 0 currentcolor;
+  opacity: 0.8;
+  z-index: -1;
+  transform: translate3d(-40vh, 10vh, 0);
+  animation: clouds 20s -5s linear infinite;
+}
+
+@keyframes clouds {
+  100% {
+    transform: translate3d(90vh, 0, 0);
+  }
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      circle at 20% 30%,
+      var(--star) 0.3px,
+      transparent 0.7px
+    ),
+    radial-gradient(circle at 80% 20%, var(--star) 0.3px, transparent 0.7px),
+    radial-gradient(circle at 50% 70%, var(--star) 0.3px, transparent 0.7px);
+  background-size: 250px 250px;
+  z-index: -4;
+  filter: drop-shadow(0 0 2px var(--star-glow));
+  animation: gentle-twinkle 5s infinite alternate;
+}
+
+.star-cluster {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      circle at 60% 40%,
+      var(--star) 0.2px,
+      transparent 0.6px
+    ),
+    radial-gradient(circle at 30% 70%, var(--star) 0.2px, transparent 0.6px);
+  background-size: 300px 300px;
+  z-index: -4;
+  filter: drop-shadow(0 0 1px var(--star-glow));
+  animation: gentle-twinkle 7s infinite alternate-reverse;
+}
+
+@keyframes gentle-twinkle {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.cloud {
+  position: absolute;
+  width: 15vh;
+  height: 3vh;
+  background: currentcolor;
+  color: var(--cloud);
+  top: 13vh;
+  left: 30vh;
+  border-radius: 0.5vh;
+  box-shadow: -4vh -1.5vh 0 currentcolor, 0 -1.5vh 0 currentcolor,
+    -10vh 1.5vh 0 currentcolor, 0vh 1.5vh 0 currentcolor,
+    -8vh 4.5vh 0 currentcolor, -4vh 4.5vh 0 currentcolor,
+    1vh 7.5vh 0 currentcolor;
+  opacity: 0.8;
+  z-index: -1;
+  transform: translate3d(-40vh, 10vh, 0);
+  animation: clouds 20s -5s linear infinite;
+}
+
+.lower-clouds {
+  position: absolute;
+  width: 15vh;
+  height: 3vh;
+  background: currentcolor;
+  color: var(--lower-cloud);
+  top: 40vh;
+  left: -1vh;
+  border-radius: 0.5vh;
+  box-shadow: -5vh -2vh 0 currentcolor, 2vh -2vh 0 currentcolor,
+    -12vh 2vh 0 currentcolor, 3vh 2vh 0 currentcolor;
+  opacity: 0.6;
+  z-index: -2;
+  transform: translate3d(-30vh, 8vh, 0);
+  animation: slow-clouds 35s -8s linear infinite;
+}
+
+@keyframes clouds {
+  100% {
+    transform: translate3d(90vh, 0, 0);
+  }
+}
+
+@keyframes slow-clouds {
+  100% {
+    transform: translate3d(100vh, 0, 0);
+  }
+}
+
+.moon {
+  position: absolute;
+  width: 8vh;
+  height: 8vh;
+  border-radius: 50%;
+  left: 20%;
+  top: 15%;
+  transform: translateX(-50%);
+  z-index: -2;
+  overflow: hidden;
+  background-color: var(--sky);
+}
+.moon:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--moon);
+  box-shadow: 0 0 4vh pink;
+}
+
+.moon-new-1 {
+  background: linear-gradient(100deg, var(--moon) 6vh, transparent 0);
+}
+.moon-new-1:after {
+  background: var(--sky);
+  box-shadow: inset 2vh 0 3vh -1vh #ffe5fc;
+  width: 96%;
+  border-radius: 4vh 0 0 4vh;
+}
+
+#eid-message {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #c88dc1;
+  font-size: 30px;
+  font-family: "Silkscreen", sans-serif;
+  text-shadow: 0 0 10px #eeece9b9;
+  opacity: 0;
+  z-index: 20;
+  animation: float-up 3s ease-in-out infinite;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+@keyframes float-up {
+  0%,
+  100% {
+    transform: translate(-50%, -40%);
+  }
+  50% {
+    transform: translate(-50%, -60%);
+  }
+}
+
+.gift-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  perspective: 1000px;
+  z-index: 10;
+}
+
+.gift {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  animation: bounce 2s infinite;
+}
+
+.gift-top {
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  background: var(--gift-primary);
+  border-radius: 10px 10px 0 0;
+  transform-origin: bottom center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease;
+}
+
+.gift-bottom {
+  position: absolute;
+  width: 100%;
+  height: 75%;
+  top: 25%;
+  background: var(--gift-secondary);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* Add horizontal ribbon to gift box */
+.gift-ribbon-horizontal {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  background: var(--gift-accent);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease;
+}
+
+/* Update the existing vertical ribbon to work with the horizontal one */
+.gift-ribbon-vertical {
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  background: var(--gift-accent);
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease;
+}
+
+/* Make both ribbons disappear when gift is opened */
+.gift.open .gift-ribbon-vertical,
+.gift.open .gift-ribbon-horizontal {
+  opacity: 0;
+}
+
+/* Vertical ribbon center piece */
+.gift-ribbon-vertical::before {
+  width: 30px;
+  height: 30px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Horizontal ribbon center piece */
+.gift-ribbon-horizontal::before {
+  width: 30px;
+  height: 30px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.gift-bow {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: var(--gift-accent);
+  top: 13%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 3;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
+}
+
+.gift-bow::before,
+.gift-bow::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border: 10px solid #f6ede4;
+  border-radius: 50% 50% 0 50%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate3d(-100%, -100%, 0) skew(10deg, 10deg);
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.face-happy {
+  opacity: 0;
+}
+
+.face-standard {
+  opacity: 1;
+}
+
+.face-standard .eye-left,
+.face-standard .eye-right {
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 25%;
+  animation: blink 5s infinite;
+}
+
+.face-standard .eye-left {
+  left: 25%;
+}
+
+.face-standard .eye-right {
+  right: 25%;
+}
+
+.face-standard .mouth {
+  width: 30px;
+  height: 5px;
+  background-color: #000;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 8px;
+}
+
+.face-happy .eye-left,
+.face-happy .eye-right {
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 35%;
+  animation: blink 5s infinite;
+}
+
+.face-happy .eye-left {
+  left: 25%;
+}
+
+.face-happy .eye-right {
+  right: 25%;
+}
+
+.face-happy .mouth {
+  width: 35px;
+  height: 30px;
+  border-bottom: 8px solid #000;
+  border-radius: 5 5 10px 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: laugh 6s infinite ease-in-out;
+}
+
+@keyframes laugh {
+  0%,
+  100% {
+    border-bottom: 5px solid #000;
+    border-radius: 0 0 15px 15px;
+  }
+  33% {
+    border-bottom: 13px solid #000;
+    border-radius: 0 0 18px 18px;
+  }
+  66% {
+    border-bottom: 20px solid #000;
+    border-radius: 0 0 25px 25px;
+  }
+}
+
+.gift.open .face-standard {
+  opacity: 0;
+}
+
+.gift.open .face-happy {
+  opacity: 1;
+}
+
+.gift.open .gift-top {
+  transform: rotateX(-180deg);
+}
+
+.gift.open .gift-ribbon-vertical,
+.gift.open .gift-bow {
+  opacity: 0;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  5% {
+    transform: scaleY(0.1);
+  }
+  10% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+#instruction {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: white;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+/* Money canvas styles */
+#money-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.gift-message-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gift-message {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  /* Ensure vertical and horizontal centering */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.gift-message-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gift-message-image {
+  margin-bottom: 15px;
+  border-radius: 10px;
+  object-fit: contain;
+  width: 100%;
+  max-width: 150px;
+}
+
+.gift-message-content h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.5em;
+  font-family: "Silkscreen", sans-serif; /* Title font */
+}
+
+.gift-message-content p {
+  margin: 0;
+  color: #666;
+  font-size: 1.1em;
+  font-family: "Courier New", monospace; /* Body font */
+}
+
+@media (max-width: 480px) {
+  .gift-message {
+    width: 90% !important;
+    padding: 15px;
+  }
+  .gift-message-content h3 {
+    font-size: 1.3em;
+  }
+  .gift-message-content p {
+    font-size: 1em;
+  }
+  .gift-message-image {
+    width: 100%;
+    max-width: 100px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .gift-message {
+    width: 80%;
+    padding: 20px;
+  }
+  .gift-message-content h3 {
+    font-size: 1.4em;
+  }
+  .gift-message-content p {
+    font-size: 1.1em;
+  }
+  .gift-message-image {
+    width: 100%;
+    max-width: 120px;
+  }
+}
+
+@media (min-width: 769px) {
+  .gift-message {
+    width: 70%;
+    padding: 25px;
+  }
+  .gift-message-content h3 {
+    font-size: 1.6em;
+  }
+  .gift-message-content p {
+    font-size: 1.2em;
+  }
+  .gift-message-image {
+    width: 100%;
+    max-width: 150px;
+  }
+}
+.total-amount {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: white;
+  z-index: 1000;
+  font-family: "Rubik Mono One", sans-serif; /* Apply the Rubik Mono One font */
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between the icon and the text */
+}
+
+.total-amount img {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+.gift-message .close-message-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #918f8f;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 10;
+}
