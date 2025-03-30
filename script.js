@@ -658,7 +658,6 @@ document.addEventListener("DOMContentLoaded", function () {
   totalAmountElement.style.display = "flex";
   totalAmountElement.style.alignItems = "center";
   totalAmountElement.style.gap = "10px";
-  totalAmountElement.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
   totalAmountElement.style.padding = "5px 10px";
   totalAmountElement.style.borderRadius = "5px";
 
@@ -686,7 +685,6 @@ document.addEventListener("DOMContentLoaded", function () {
   highestScoreElement.style.justifyContent = "flex-end";
   highestScoreElement.style.alignItems = "center";
   highestScoreElement.style.gap = "10px";
-  highestScoreElement.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
   highestScoreElement.style.padding = "5px 10px";
   highestScoreElement.style.borderRadius = "5px";
 
