@@ -1,4 +1,4 @@
-#   ✨🌙 Eid Celebration Game! 🌙✨
+#   ✨🌙 Eid Gift Box: Collect & Celebrate 🌙✨
 
 An interactive celebration game where you collect flying money from an Eid gift box!
 
