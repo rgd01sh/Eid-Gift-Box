@@ -27,5 +27,5 @@ https://rgd01sh.github.io/Eid-Gift-Box/
 ## How to Use
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/eid-mubarak-celebration.git
-   cd eid-mubarak-celebration
+   git clone https://github.com/rgd01sh/Eid-Gift-Box.git
+   cd Eid-Gift-Box
